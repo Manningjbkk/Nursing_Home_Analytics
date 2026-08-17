@@ -1,0 +1,51 @@
+version: 2
+
+models:
+  - name: nurse_to_patient_ratio
+    description: >
+      Calculates daily nursing staffing hours per resident using
+      RN, LPN, and CNA hours divided by MDS census.
+  - name: total_nurse_hours
+    description: >
+      Calculates the totalk nurse hours by hospital, state and month.
+  - name: contract_staff_ratio
+    description: >
+      Calculates the percentage of monthly nursing hours supplied
+      by contract RN, LPN, and CNA staff for each facility.
+
+    columns:
+      - name: PROVNUM
+        description: "CMS provider identification number"
+
+      - name: PROVNAME
+        description: "Nursing facility name"
+
+      - name: STATE
+        description: "Facility state"
+
+      - name: MONTH
+        description: "Month of the staffing records"
+
+      - name: TOTAL_NURSE_HOURS
+        description: "Total RN, LPN, and CNA hours for the month"
+
+      - name: TOTAL_CONTRACT_HOURS
+        description: "Total contract RN, LPN, and CNA hours for the month"
+
+      - name: CONTRACT_STAFF_RATIO
+        description: >
+          Contract nursing hours divided by total nursing hours.
+
+sources:
+  - name: PBJ_DATA_Q2_2024
+    description: >
+      Q2 2024 PBJ data containing nursing home staffing
+      and resident census information.
+
+    database: NURSING_HOME_DATA
+    schema: PUBLIC
+
+    tables:
+      - name: PBJ_NURSE_STAFFING_Q2_2024
+        description: >
+          Daily PBJ nurse staffing and census data for Q2 2024.
